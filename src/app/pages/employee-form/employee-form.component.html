@@ -1,1 +1,108 @@
-<p>employee-form works!</p>
+<div class="container-fluid">
+
+  <div class="card">
+    <div class="card-header bg-warning">
+      Create New Employee
+    </div>
+    <div class="card-body">
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="">Name</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="employeeObj.fullName" required>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="">Phone</label>
+              <input type="text" class="form-control" name="phone" [(ngModel)]="employeeObj.phone" required>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="">Email</label>
+              <input type="text" class="form-control" name="email" [(ngModel)]="employeeObj.email" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="">Gender</label><br>
+              <div class="form-check form-check-inline">
+                <input type="radio" class="form-control" name="gender" value="Male" [(ngModel)]="employeeObj.gender" required>
+                <label class="form-check-label">Male</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="radio" class="form-control" name="gender" value="female" [(ngModel)]="employeeObj.gender" required>
+                <label class="form-check-label">Female</label>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="">Date of Joining</label>
+              <input type="date" class="form-control" name="doj" [(ngModel)]="employeeObj.dateOfJoining" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="">Sales Deparment</label>
+              <select name="departmentId" id="" class="custom-select" [(ngModel)]="employeeObj.departmentId" (change)="getDesignation()">
+
+                <option value="">Select</option>
+                <option *ngFor="let dept of deptList$ | async" [value]="dept.departmentId">{{dept.departmentName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="">Sales Designation</label>
+              <select name="designationId" id="" class="custom-select" [(ngModel)]="employeeObj.designationId">
+                <option value="">Select</option>
+                <option *ngFor="let des of designationList$ | async" [value]="des.designationId">{{ des.designationName }}</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="">Sales Type</label>
+              <select name="" id="" class="custom-select" [(ngModel)]="employeeObj.employeeType">
+                <option value="">Select</option>
+                <option value="Permanent">Permanent</option>
+                <option value="Contract">Contract</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="">Salary</label>
+              <input type="text" class="form-control" name="salary" [(ngModel)]="employeeObj.salary" required>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-4">
+            <input type="reset" class="btn btn-secondary" value="Reset" />
+          </div>
+          <div class="col-4">
+            <button *ngIf="employeeObj.employeeId == 0; else editButton" type="submit" class="btn btn-success" (click)="onSaveEmployee()" >Create Employee</button>
+            <ng-template #editButton>
+              <button type="submit" class="btn btn-success" (click)="onUpdateEmployee()" >Update Employee</button>
+            </ng-template>
+          </div>
+        </div>
+
+
+    </div>
+  </div>
+
+</div>

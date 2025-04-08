@@ -1,1 +1,36 @@
-<p>employee-list works!</p>
+<div class="card">
+  <div class="card-header bg-warning">
+    Employee Header
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Sr. No. </th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Joining Date</th>
+          <th>Department</th>
+          <th>Designation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employeeList; let i = index">
+          <td>{{ i+1 }}</td>
+          <td>{{ emp.fullName }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.phone }}</td>
+          <td>{{ emp.dateOfJoining | date: 'dd-MM-yyyy'}}</td>
+          <td>{{ emp.departmentName }}</td>
+          <td>{{ emp.designationName }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="onEdit(emp.employeeId)">Edit</button>
+            <button class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
